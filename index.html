@@ -1020,6 +1020,16 @@ window.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.12 });
 
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // 👇 ADICIONA ISSO AQUI
+  fetch("https://webhook.site/SEU-CODIGO", {
+    method: "POST",
+    body: JSON.stringify({
+      time: new Date().toLocaleString(),
+      userAgent: navigator.userAgent
+    })
+  });
+
 });
 </script>
 </body>
