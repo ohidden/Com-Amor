@@ -1001,12 +1001,14 @@ E mesmo sabendo que, em algum momento, caso você não queira, eu vou precisar a
 window.addEventListener('DOMContentLoaded', () => {
   // Pétalas
   const hero = document.querySelector('.hero');
-  for (let i = 0; i < 20; i++) {
-    const p = document.createElement('div');
-    p.className = 'petal';
-    const size = 5 + Math.random() * 9;
-    p.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;width:${size}px;height:${size}px;animation-duration:${7+Math.random()*11}s;animation-delay:${Math.random()*10}s;opacity:${0.15+Math.random()*0.4};`;
-    hero.appendChild(p);
+  if (hero) {
+    for (let i = 0; i < 20; i++) {
+      const p = document.createElement('div');
+      p.className = 'petal';
+      const size = 5 + Math.random() * 9;
+      p.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;width:${size}px;height:${size}px;animation-duration:${7+Math.random()*11}s;animation-delay:${Math.random()*10}s;opacity:${0.15+Math.random()*0.4};`;
+      hero.appendChild(p);
+    }
   }
 
   // Scroll reveal
@@ -1021,15 +1023,18 @@ window.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-  // 👇 ADICIONA ISSO AQUI
-  fetch("https://webhook.site/SEU-CODIGO", {
+  // 🔥 TRACKING DE VISITA
+  fetch("https://webhook.site/db48da3a-124e-4e19-a09e-961a86df8bc4", {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify({
       time: new Date().toLocaleString(),
-      userAgent: navigator.userAgent
+      userAgent: navigator.userAgent,
+      page: window.location.href
     })
-  });
-
+  }).catch(() => {}); // evita erro no console
 });
 </script>
 </body>
